@@ -6,6 +6,12 @@ public class ComissaoService
 {
     public decimal Calcular(Venda venda)
     {
+        if (venda.Valor < 0)
+        {
+            throw new InvalidOperationException(
+                "O valor da venda não pode ser negativo.");
+        }
+
         if (venda.Valor < 100)
         {
             return 0;
