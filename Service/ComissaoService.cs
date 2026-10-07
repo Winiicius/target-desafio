@@ -18,4 +18,14 @@ public class ComissaoService
 
         return venda.Valor * 0.05m;
     }
+
+    public Dictionary<string, decimal> CalcularPorVendedor(
+        List<Venda> vendas)
+    {
+        return vendas
+            .GroupBy(venda => venda.Vendedor)
+            .ToDictionary(
+                grupo => grupo.Key,
+                grupo => grupo.Sum(Calcular));
+    }
 }
