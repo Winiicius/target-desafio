@@ -8,7 +8,14 @@ public class JurosService
 
     public decimal Calcular(Cobranca cobranca, DateTime dataReferencia)
     {
-        var diasDeAtraso = (dataReferencia.Date - cobranca.DataVencimento.Date).Days;
+        if (cobranca.Valor < 0)
+        {
+            throw new InvalidOperationException(
+                "O valor da cobrança não pode ser negativo.");
+        }
+
+        var diasDeAtraso =
+            (dataReferencia.Date - cobranca.DataVencimento.Date).Days;
 
         if (diasDeAtraso <= 0)
         {

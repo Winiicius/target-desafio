@@ -19,15 +19,16 @@ public class EstoqueService
             throw new InvalidOperationException("Produto não encontrado.");
         }
 
-        if (movimentacao.Descricao.StartsWith(
+        var descricao = movimentacao.Descricao.Trim();
+
+        if (descricao.StartsWith(
                 "Entrada",
                 StringComparison.OrdinalIgnoreCase))
         {
             produto.Estoque += movimentacao.Quantidade;
         }
-        else if (movimentacao.Descricao.StartsWith(
-                     "Saída",
-                     StringComparison.OrdinalIgnoreCase))
+        else if (descricao.StartsWith("Saída", StringComparison.OrdinalIgnoreCase) || 
+                 descricao.StartsWith("Saida", StringComparison.OrdinalIgnoreCase))
         {
             if (produto.Estoque < movimentacao.Quantidade)
             {

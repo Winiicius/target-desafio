@@ -117,4 +117,19 @@ public class ComissaoServiceTests
         Assert.Equal(50m, resultado["João Silva"]);
         Assert.Equal(30m, resultado["Maria Souza"]);
     }
+
+    [Fact]
+    public void DeveLancarErroQuandoValorDaVendaForNegativo()
+    {
+        var venda = new Venda
+        {
+            Vendedor = "João Silva",
+            Valor = -100m
+        };
+
+        var service = new ComissaoService();
+
+        Assert.Throws<InvalidOperationException>(() =>
+            service.Calcular(venda));
+    }
 }

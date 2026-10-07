@@ -94,4 +94,21 @@ public class JurosServiceTests
 
         Assert.Equal(12.525m, resultado);
     }
+
+    [Fact]
+    public void DeveLancarErroQuandoValorDaCobrancaForNegativo()
+    {
+        var cobranca = new Cobranca
+        {
+            Valor = -1000m,
+            DataVencimento = new DateTime(2026, 10, 6)
+        };
+
+        var service = new JurosService();
+
+        Assert.Throws<InvalidOperationException>(() =>
+            service.Calcular(
+                cobranca,
+                new DateTime(2026, 10, 7)));
+    }
 }
