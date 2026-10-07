@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Target.Desafio.Tests/Target.Desafio.Tests.csproj" />
+  </Folder>
+  <Project Path="target-desafio.csproj" />
+</Solution>
